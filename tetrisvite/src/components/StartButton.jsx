@@ -19,7 +19,7 @@ const StyledStartButton = styled.button`
 `;
 
 const StartButton = ({ callback }) => (
-  <StyledStartButton onClick={callback}>Start Game</StyledStartButton>
+  <div className="text-white p-[20px] mt-16 min-h-[30px] w-full border-4 border-gray-400 rounded-3xl bg-gray-700 font-mono text-4xl hover:cursor-pointer" onClick={callback}>Start Game</div>
 );
 
 export default StartButton;

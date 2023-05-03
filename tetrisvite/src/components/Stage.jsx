@@ -1,12 +1,12 @@
 import React from 'react';
 import { StyledStage } from './styles/StyledStage';
-
+import styles from "../modulecss/Stage.module.css"
 import Cell from './Cell';
 
 const Stage = ({ stage }) => (
-  <StyledStage width={stage[0].length} height={stage.length}>
+  <div id={styles.main} className="border-2 border-x-cyan-500 w-full h-full bg-black">
     {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
-  </StyledStage>
+  </div>
 );
 
 export default Stage;

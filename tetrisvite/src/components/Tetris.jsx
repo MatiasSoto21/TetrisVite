@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import styles from "../modulecss/Tetris.module.css";
 import { createStage, checkCollision } from '../gameHelpers';
 import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
 
@@ -24,7 +24,7 @@ const Tetris = () => {
     rowsCleared
   );
 
-  console.log('re-render');
+  
 
   const movePlayer = dir => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
@@ -65,7 +65,7 @@ const Tetris = () => {
     } else {
       // Game over!
       if (player.pos.y < 1) {
-        console.log('GAME OVER!!!');
+    
         setGameOver(true);
         setDropTime(null);
       }
@@ -101,15 +101,17 @@ const Tetris = () => {
   };
 
   return (
-    <StyledTetrisWrapper
-      role="button"
+    <div
+    id={styles.main}
+    className="w-screen h-screen overflow-hidden"
+      /* role="button" */
       tabIndex="0"
       onKeyDown={e => move(e)}
       onKeyUp={keyUp}
     >
-      <StyledTetris>
+      <div className="flex items-start p-[40px] ml-[200px] m-0 max-w-[950px] h-[1000px]">
         <Stage stage={stage} />
-        <aside>
+        <aside className=" w-full max-w-[280px] block p-2">
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
@@ -121,8 +123,8 @@ const Tetris = () => {
           )}
           <StartButton callback={startGame} />
         </aside>
-      </StyledTetris>
-    </StyledTetrisWrapper>
+      </div>
+    </div>
   );
 };
 
