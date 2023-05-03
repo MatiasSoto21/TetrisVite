@@ -1,12 +1,10 @@
-import Tetris from './components/Tetris'
-import './App.css'
+import React from 'react';
+import Tetris from './components/Tetris';
 
-function App() {
+const App = () => (
+  <div className="App">
+    <Tetris />
+  </div>
+);
 
-
-  return (
-     <Tetris/>
-  )
-}
-
-export default App
+export default App;
