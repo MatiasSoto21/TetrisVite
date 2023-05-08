@@ -4,7 +4,7 @@ import styles from "../modulecss/Stage.module.css"
 import Cell from './Cell';
 
 const Stage = ({ stage }) => (
-  <div id={styles.main} className="border-2 border-x-cyan-500 w-full h-full bg-black">
+  <div id={styles.main} className="border-2 border-gray-500 w-full h-full bg-black">
     {stage.map(row => row.map((cell, x) => <Cell key={x} type={cell[0]} />))}
   </div>
 );

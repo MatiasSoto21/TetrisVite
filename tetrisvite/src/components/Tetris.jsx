@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styles from "../modulecss/Tetris.module.css";
 import { createStage, checkCollision } from '../gameHelpers';
-import { StyledTetrisWrapper, StyledTetris } from './styles/StyledTetris';
+
 
 // Custom Hooks
 import { useInterval } from '../hooks/useInterval';
@@ -34,15 +34,14 @@ const Tetris = () => {
 
   const keyUp = ({ keyCode }) => {
     if (!gameOver) {
-      // Activate the interval again when user releases down arrow.
       if (keyCode === 40) {
-        setDropTime(1000 / (level + 1));
+        setDropTime(600 / (level + 1));
       }
     }
   };
 
   const startGame = () => {
-    // Reset everything
+    // Reset
     setStage(createStage());
     setDropTime(1000);
     resetPlayer();
@@ -57,13 +56,13 @@ const Tetris = () => {
     if (rows > (level + 1) * 10) {
       setLevel(prev => prev + 1);
       // Also increase speed
-      setDropTime(1000 / (level + 1) + 200);
+      setDropTime(600 / (level + 1) + 200);
     }
 
     if (!checkCollision(player, stage, { x: 0, y: 1 })) {
       updatePlayerPos({ x: 0, y: 1, collided: false });
     } else {
-      // Game over!
+      // Game over
       if (player.pos.y < 1) {
     
         setGameOver(true);
@@ -74,14 +73,10 @@ const Tetris = () => {
   };
 
   const dropPlayer = () => {
-    // We don't need to run the interval when we use the arrow down to
-    // move the tetromino downwards. So deactivate it for now.
-    setDropTime(null);
+    
     drop();
   };
 
-  // This one starts the game
-  // Custom hook by Dan Abramov
   useInterval(() => {
     drop();
   }, dropTime);
