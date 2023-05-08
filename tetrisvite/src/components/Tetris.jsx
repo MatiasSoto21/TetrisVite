@@ -1,18 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styles from "../modulecss/Tetris.module.css";
-import { createStage, checkCollision } from '../gameHelpers';
-
+import { createStage, checkCollision } from "../gameHelpers";
 
 // Custom Hooks
-import { useInterval } from '../hooks/useInterval';
-import { usePlayer } from '../hooks/usePlayer';
-import { useStage } from '../hooks/useStage';
-import { useGameStatus } from '../hooks/useGameStatus';
+import { useInterval } from "../hooks/useInterval";
+import { usePlayer } from "../hooks/usePlayer";
+import { useStage } from "../hooks/useStage";
+import { useGameStatus } from "../hooks/useGameStatus";
 
 // Components
-import Stage from './Stage';
-import Display from './Display';
-import StartButton from './StartButton';
+import Stage from "./Stage";
+import Display from "./Display";
+import StartButton from "./StartButton";
 
 const Tetris = () => {
   const [dropTime, setDropTime] = useState(null);
@@ -20,13 +19,10 @@ const Tetris = () => {
 
   const [player, updatePlayerPos, resetPlayer, playerRotate] = usePlayer();
   const [stage, setStage, rowsCleared] = useStage(player, resetPlayer);
-  const [score, setScore, rows, setRows, level, setLevel] = useGameStatus(
-    rowsCleared
-  );
+  const [score, setScore, rows, setRows, level, setLevel] =
+    useGameStatus(rowsCleared);
 
-  
-
-  const movePlayer = dir => {
+  const movePlayer = (dir) => {
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
       updatePlayerPos({ x: dir, y: 0 });
     }
@@ -54,7 +50,7 @@ const Tetris = () => {
   const drop = () => {
     // Increase level when player has cleared 10 rows
     if (rows > (level + 1) * 10) {
-      setLevel(prev => prev + 1);
+      setLevel((prev) => prev + 1);
       // Also increase speed
       setDropTime(600 / (level + 1) + 200);
     }
@@ -64,7 +60,6 @@ const Tetris = () => {
     } else {
       // Game over
       if (player.pos.y < 1) {
-    
         setGameOver(true);
         setDropTime(null);
       }
@@ -73,7 +68,6 @@ const Tetris = () => {
   };
 
   const dropPlayer = () => {
-    
     drop();
   };
 
@@ -97,11 +91,11 @@ const Tetris = () => {
 
   return (
     <div
-    id={styles.main}
-    className="w-screen h-screen overflow-hidden"
+      id={styles.main}
+      className="w-screen h-screen overflow-hidden"
       /* role="button" */
       tabIndex="0"
-      onKeyDown={e => move(e)}
+      onKeyDown={(e) => move(e)}
       onKeyUp={keyUp}
     >
       <div className="flex items-start p-[40px] ml-[200px] m-0 max-w-[950px] h-[1000px]">
