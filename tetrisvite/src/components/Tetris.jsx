@@ -98,13 +98,13 @@ const Tetris = () => {
       onKeyDown={(e) => move(e)}
       onKeyUp={keyUp}
     >
-      <div className="flex items-start p-[40px] md:ml-[100px] lg:ml-[200px] m-0 min-w-[650px] max-w-[650px] md:max-w-[700px] lg:max-w-[850px] h-[550px] md:h-[600px] lg:h-[850px]">
+      <div className="flex flex-col md:flex-row lg:flex-row items-start p-[40px] md:ml-[100px] lg:ml-[200px] m-0 min-w-[500px] max-w-[500px] md:max-w-[700px] lg:max-w-[850px] h-[850px] md:h-[600px] lg:h-[850px]">
         <Stage stage={stage} />
         <aside className=" w-full max-w-[280px] block p-2">
           {gameOver ? (
             <Display gameOver={gameOver} text="Game Over" />
           ) : (
-            <div>
+            <div className="flex md:block lg:block gap-2">
               <Display text={`Score: ${score}`} />
               <Display text={`rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
